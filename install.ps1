@@ -113,19 +113,32 @@ if (Test-Path $DB_PATH) {
     Write-Host ""
     Write-Host "🔄 Updating cc-switch providers..." -ForegroundColor Yellow
     try {
+        # Download inject script
+        $injectScriptUrl = "$REPO_RAW/scripts/inject_config.py"
+        $injectScript = "$env:TEMP\color-cc-inject.py"
+        Invoke-RestMethod -Uri $injectScriptUrl -OutFile $injectScript
+
         # Install better-sqlite3 if not available
         if (-not (Test-Command python)) {
             Write-Host "   ⚠ Python not found, skipping cc-switch config" -ForegroundColor Yellow
         } else {
-            $injectScript = "$env:USERPROFILE\.cc-switch\inject_stable_config.py"
-            if (Test-Path $injectScript) {
-                python $injectScript
-                Write-Host "   ✓ cc-switch providers updated" -ForegroundColor Green
-            }
+            # Install better-sqlite3
+            Write-Host "   Installing better-sqlite3..." -ForegroundColor Gray
+            python -m pip install better-sqlite3 -q 2>$null
+
+            # Run inject script
+            python $injectScript
+            Write-Host "   ✓ cc-switch providers updated" -ForegroundColor Green
         }
+
+        # Cleanup
+        Remove-Item $injectScript -Force -ErrorAction SilentlyContinue
     } catch {
-        Write-Host "   ⚠ cc-switch update skipped" -ForegroundColor Yellow
+        Write-Host "   ⚠ cc-switch update skipped (may require manual setup)" -ForegroundColor Yellow
     }
+} else {
+    Write-Host ""
+    Write-Host "ℹ️  cc-switch not found - statusLine will work but may reset on account switch" -ForegroundColor Cyan
 }
 
 # Success message

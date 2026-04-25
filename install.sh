@@ -128,11 +128,24 @@ if [ -f "$DB_PATH" ]; then
     echo ""
     echo -e "${YELLOW}🔄 Updating cc-switch providers...${NC}"
     if command_exists python3; then
-        INJECT_SCRIPT="$HOME/.cc-switch/inject_stable_config.py"
-        if [ -f "$INJECT_SCRIPT" ]; then
-            python3 "$INJECT_SCRIPT" 2>/dev/null && echo -e "   ${GREEN}✓${NC} cc-switch providers updated"
-        fi
+        # Download inject script
+        INJECT_SCRIPT_URL="$REPO_RAW/scripts/inject_config.py"
+        INJECT_SCRIPT="/tmp/color-cc-inject.py"
+        curl -fsSL "$INJECT_SCRIPT_URL" -o "$INJECT_SCRIPT"
+
+        # Install better-sqlite3
+        echo "   Installing better-sqlite3..." | ${GRAY}
+        python3 -m pip install better-sqlite3 -q 2>/dev/null
+
+        # Run inject script
+        python3 "$INJECT_SCRIPT" 2>/dev/null && echo -e "   ${GREEN}✓${NC} cc-switch providers updated"
+
+        # Cleanup
+        rm -f "$INJECT_SCRIPT"
     fi
+else
+    echo ""
+    echo -e "${CYAN}ℹ️  cc-switch not found - statusLine will work but may reset on account switch${NC}"
 fi
 
 # Success message
