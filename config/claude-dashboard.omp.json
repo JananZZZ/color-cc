@@ -1,0 +1,181 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": true,
+  "palette": {
+    "cosmic_pink": "#F5C2E7",
+    "cosmic_purple": "#CBA6F7",
+    "cosmic_blue": "#89B4FA",
+    "cosmic_cyan": "#74C7EC",
+    "cosmic_green": "#A6E3A1",
+    "cosmic_yellow": "#F9E2AF",
+    "cosmic_orange": "#FAB387",
+    "cosmic_red": "#F38BA8",
+    "deep_bg": "#11131C",
+    "bright_text": "#FFFFFF"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_pink",
+          "leading_diamond": " ",
+          "trailing_diamond": "",
+          "template": " 🤖 "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_pink",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": "{{ .Model.DisplayName }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_purple",
+          "leading_diamond": "",
+          "trailing_diamond": " ",
+          "template": " 🧠 {{ .FormattedTokens }}/{{ div .ContextWindow.ContextWindowSize 1000 }}K ({{ .TokenUsagePercent }}%/{{ if .ContextWindow.RemainingPercentage }}{{ .ContextWindow.RemainingPercentage }}%{{ else }}--{{ end }}) "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_cyan",
+          "leading_diamond": " ",
+          "trailing_diamond": "",
+          "template": " 📥 In {{ .ContextWindow.TotalInputTokens }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_blue",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " 📤 Out {{ .ContextWindow.TotalOutputTokens }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_red",
+          "leading_diamond": "",
+          "trailing_diamond": " ",
+          "template": " 💾 Cache {{ if .ContextWindow.CurrentUsage }}{{ add .ContextWindow.CurrentUsage.CacheCreationInputTokens .ContextWindow.CurrentUsage.CacheReadInputTokens }}{{ else }}0{{ end }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_yellow",
+          "leading_diamond": " ",
+          "trailing_diamond": "",
+          "template": " 💰 {{ .FormattedCost }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_orange",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " ⏱️ {{ .FormattedDuration }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_green",
+          "leading_diamond": "",
+          "trailing_diamond": " ",
+          "template": " 🌐 {{ .FormattedAPIDuration }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_pink",
+          "leading_diamond": " ",
+          "trailing_diamond": "",
+          "template": " 📝 +{{ .Cost.TotalLinesAdded }}/-{{ .Cost.TotalLinesRemoved }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_blue",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " 📂 {{ .Workspace.ProjectDir }} "
+        },
+        {
+          "type": "git",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_green",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " 🌿 {{ .HEAD }} "
+        },
+        {
+          "type": "git",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_orange",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " +{{ .Working.Staged }}~{{ .Working.Modified }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_purple",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " 📊 5H:{{ .FiveHourUsage }}%|7D:{{ .SevenDayUsage }}% "
+        },
+        {
+          "type": "text",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_cyan",
+          "leading_diamond": "",
+          "trailing_diamond": " ",
+          "template": " 💻 {{ .Env.COMPUTERNAME }} "
+        }
+      ]
+    }
+  ]
+}
