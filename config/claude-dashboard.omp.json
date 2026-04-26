@@ -23,7 +23,7 @@
           "type": "text",
           "style": "diamond",
           "foreground": "p:deep_bg",
-          "background": "p:cosmic_pink",
+          "background": "p:cosmic_purple",
           "leading_diamond": " ",
           "trailing_diamond": "",
           "template": " 🤖 "
@@ -32,7 +32,7 @@
           "type": "claude",
           "style": "diamond",
           "foreground": "p:deep_bg",
-          "background": "p:cosmic_pink",
+          "background": "p:cosmic_purple",
           "leading_diamond": "",
           "trailing_diamond": "",
           "template": "{{ .Model.DisplayName }} "
@@ -41,10 +41,10 @@
           "type": "claude",
           "style": "diamond",
           "foreground": "p:deep_bg",
-          "background": "p:cosmic_purple",
+          "background": "p:cosmic_pink",
           "leading_diamond": "",
           "trailing_diamond": " ",
-          "template": " 🧠 {{ .FormattedTokens }}/{{ div .ContextWindow.ContextWindowSize 1000 }}K ({{ .TokenUsagePercent }}%/{{ if .ContextWindow.RemainingPercentage }}{{ .ContextWindow.RemainingPercentage }}%{{ else }}--{{ end }}) "
+          "template": " 🧠 {{ .FormattedTokens }}/{{ div .ContextWindow.ContextWindowSize 1000 }}K ({{ sub 100 .ContextWindow.RemainingPercentage }}%) "
         }
       ]
     },
@@ -57,28 +57,28 @@
           "type": "claude",
           "style": "diamond",
           "foreground": "p:deep_bg",
-          "background": "p:cosmic_cyan",
+          "background": "p:cosmic_blue",
           "leading_diamond": " ",
           "trailing_diamond": "",
-          "template": " 📥 In {{ .ContextWindow.TotalInputTokens }} "
+          "template": " 📥 In {{ div .ContextWindow.TotalInputTokens 1000 }}K "
         },
         {
           "type": "claude",
           "style": "diamond",
           "foreground": "p:deep_bg",
-          "background": "p:cosmic_blue",
+          "background": "p:cosmic_cyan",
           "leading_diamond": "",
           "trailing_diamond": "",
-          "template": " 📤 Out {{ .ContextWindow.TotalOutputTokens }} "
+          "template": " 📤 Out {{ div .ContextWindow.TotalOutputTokens 1000 }}K "
         },
         {
           "type": "claude",
           "style": "diamond",
           "foreground": "p:deep_bg",
-          "background": "p:cosmic_red",
+          "background": "p:cosmic_green",
           "leading_diamond": "",
           "trailing_diamond": " ",
-          "template": " 💾 Cache {{ if .ContextWindow.CurrentUsage }}{{ add .ContextWindow.CurrentUsage.CacheCreationInputTokens .ContextWindow.CurrentUsage.CacheReadInputTokens }}{{ else }}0{{ end }} "
+          "template": " 💾 Cache {{ if .ContextWindow.CurrentUsage }}{{ div (add .ContextWindow.CurrentUsage.CacheCreationInputTokens .ContextWindow.CurrentUsage.CacheReadInputTokens) 1000 }}K{{ else }}0K{{ end }} "
         }
       ]
     },
@@ -109,10 +109,28 @@
           "type": "claude",
           "style": "diamond",
           "foreground": "p:deep_bg",
+          "background": "p:cosmic_red",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " 🌐 {{ .FormattedAPIDuration }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_pink",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " 📝 +{{ .Cost.TotalLinesAdded }}/-{{ .Cost.TotalLinesRemoved }} "
+        },
+        {
+          "type": "git",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
           "background": "p:cosmic_green",
           "leading_diamond": "",
           "trailing_diamond": " ",
-          "template": " 🌐 {{ .FormattedAPIDuration }} "
+          "template": " 🌿 {{ .HEAD }} "
         }
       ]
     },
@@ -122,55 +140,22 @@
       "newline": true,
       "segments": [
         {
-          "type": "claude",
-          "style": "diamond",
-          "foreground": "p:deep_bg",
-          "background": "p:cosmic_pink",
-          "leading_diamond": " ",
-          "trailing_diamond": "",
-          "template": " 📝 +{{ .Cost.TotalLinesAdded }}/-{{ .Cost.TotalLinesRemoved }} "
-        },
-        {
-          "type": "claude",
+          "type": "path",
           "style": "diamond",
           "foreground": "p:deep_bg",
           "background": "p:cosmic_blue",
-          "leading_diamond": "",
+          "leading_diamond": " ",
           "trailing_diamond": "",
-          "template": " 📂 {{ .Workspace.ProjectDir }} "
-        },
-        {
-          "type": "git",
-          "style": "diamond",
-          "foreground": "p:deep_bg",
-          "background": "p:cosmic_green",
-          "leading_diamond": "",
-          "trailing_diamond": "",
-          "template": " 🌿 {{ .HEAD }} "
-        },
-        {
-          "type": "git",
-          "style": "diamond",
-          "foreground": "p:deep_bg",
-          "background": "p:cosmic_orange",
-          "leading_diamond": "",
-          "trailing_diamond": "",
-          "template": " +{{ .Working.Staged }}~{{ .Working.Modified }} "
-        },
-        {
-          "type": "claude",
-          "style": "diamond",
-          "foreground": "p:deep_bg",
-          "background": "p:cosmic_purple",
-          "leading_diamond": "",
-          "trailing_diamond": "",
-          "template": " 📊 5H:{{ .FiveHourUsage }}%|7D:{{ .SevenDayUsage }}% "
+          "template": " 📂 {{ .Env.PWD }} ",
+          "properties": {
+            "hide_arrow": true
+          }
         },
         {
           "type": "text",
           "style": "diamond",
           "foreground": "p:deep_bg",
-          "background": "p:cosmic_cyan",
+          "background": "p:cosmic_purple",
           "leading_diamond": "",
           "trailing_diamond": " ",
           "template": " 💻 {{ .Env.COMPUTERNAME }} "
