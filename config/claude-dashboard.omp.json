@@ -44,7 +44,7 @@
           "background": "p:cosmic_pink",
           "leading_diamond": "",
           "trailing_diamond": " ",
-          "template": " 🧠 {{ .FormattedTokens }}/{{ div .ContextWindow.ContextWindowSize 1000 }}K ({{ sub 100 .ContextWindow.RemainingPercentage }}%) "
+          "template": " 🧠 {{ .FormattedTokens }}/{{ div .ContextWindow.ContextWindowSize 1000 }}K ({{ if .ContextWindow.RemainingPercentage }}{{ sub 100 .ContextWindow.RemainingPercentage }}{{ else }}0{{ end }}%) "
         }
       ]
     },
@@ -120,17 +120,8 @@
           "foreground": "p:deep_bg",
           "background": "p:cosmic_pink",
           "leading_diamond": "",
-          "trailing_diamond": "",
-          "template": " 📝 +{{ .Cost.TotalLinesAdded }}/-{{ .Cost.TotalLinesRemoved }} "
-        },
-        {
-          "type": "git",
-          "style": "diamond",
-          "foreground": "p:deep_bg",
-          "background": "p:cosmic_green",
-          "leading_diamond": "",
           "trailing_diamond": " ",
-          "template": " 🌿 {{ .HEAD }} "
+          "template": " 📝 +{{ .Cost.TotalLinesAdded }}/-{{ .Cost.TotalLinesRemoved }} "
         }
       ]
     },
@@ -140,16 +131,22 @@
       "newline": true,
       "segments": [
         {
-          "type": "path",
+          "type": "text",
           "style": "diamond",
           "foreground": "p:deep_bg",
           "background": "p:cosmic_blue",
           "leading_diamond": " ",
           "trailing_diamond": "",
-          "template": " 📂 {{ .Env.PWD }} ",
-          "properties": {
-            "hide_arrow": true
-          }
+          "template": " 📂 {{ .Env.PWD }} "
+        },
+        {
+          "type": "git",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_green",
+          "leading_diamond": "",
+          "trailing_diamond": " ",
+          "template": " 🌿 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} "
         },
         {
           "type": "text",

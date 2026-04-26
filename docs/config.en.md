@@ -1,5 +1,11 @@
 # Configuration Guide
 
+---
+
+[中文](config.zh.md) | English
+
+---
+
 ## 🎨 Theme File Location
 
 The theme configuration is stored at:

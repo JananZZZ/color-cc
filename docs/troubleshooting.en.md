@@ -1,5 +1,11 @@
 # Troubleshooting
 
+---
+
+[中文](troubleshooting.zh.md) | English
+
+---
+
 ## Dashboard not showing
 
 ### Restart Claude Code
@@ -76,7 +82,7 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/username/color-cc/main
 
 ## Still having issues?
 
-1. Check the [GitHub Issues](https://github.com/username/color-cc/issues)
+1. Check the [GitHub Issues](https://github.com/JananZZZ/color-cc/issues)
 2. Create a new issue with details:
    - OS and version
    - Error message

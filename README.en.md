@@ -5,6 +5,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-brightgreen.svg)]()
 
+---
+
+[中文](README.zh.md) | English
+
+---
+
 ## 📸 Preview
 
 <!-- Add your screenshot here -->
@@ -40,10 +46,10 @@ That's it! 🎉 Restart Claude Code to see your new dashboard.
 
 | Line | Content |
 |------|---------|
-| **1** | 🤖 Model & 🧠 Token usage (current/total, % used, % remaining) |
+| **1** | 🤖 Model & 🧠 Token usage (current/total, % used) |
 | **2** | 📥 Input / 📤 Output / 💾 Cache tokens |
-| **3** | 💰 Cost / ⏱️ Session duration / 🌐 API time |
-| **4** | 📝 Code changes / 📂 Project / 🌿 Git / 💻 PC / 📊 Usage rate |
+| **3** | 💰 Cost / ⏱️ Session duration / 🌐 API time / 📝 Code changes |
+| **4** | 📂 Project / 🌿 Git branch & status / 💻 Computer name |
 
 ## ⚙️ Configuration
 
@@ -63,7 +69,7 @@ Want to customize? Edit `~/.claude/claude-dashboard.omp.json`
 }
 ```
 
-[Configuration Guide →](docs/config.md)
+[Configuration Guide →](docs/config.en.md)
 
 ## 🛠️ Requirements
 
@@ -73,7 +79,7 @@ Want to customize? Edit `~/.claude/claude-dashboard.omp.json`
 
 ## 🔧 Troubleshooting
 
-Dashboard not showing? Check the [troubleshooting guide](docs/troubleshooting.md).
+Dashboard not showing? Check the [troubleshooting guide](docs/troubleshooting.en.md).
 
 ## 🤝 Contributing
 
