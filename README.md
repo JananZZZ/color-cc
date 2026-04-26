@@ -1,31 +1,31 @@
 # color-cc
 
-> ✨ A minimal, elegant dashboard for Claude Code terminal
+> ✨ Claude Code 终端的极简、优雅仪表板
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-brightgreen.svg)]()
 
 ---
 
-[中文](README.zh.md) | [English](README.en.md)
+中文 | [English](README.en.md)
 
 ---
 
-## 📸 Preview
+## 📸 预览
 
 <img src="assets/screenshots/dashboard.png" width="800">
 
-## ✨ Features
+## ✨ 特性
 
-- 🎨 **4-Line Dashboard** - Model, Tokens, Cost, Git at a glance
-- 🚀 **One-Command Install** - Up and running in seconds
-- 🔄 **Auto-Persist** - Settings survive cc-switch account switches
-- 🎯 **Real-time Metrics** - Live token usage and cost tracking
-- 🌈 **Cosmic Theme** - Beautiful pastel colors inspired by Catppuccin
+- 🎨 **4 行仪表板** - 一目了然的模型、Token、成本、Git 信息
+- 🚀 **一键安装** - 几秒钟内即可完成配置
+- 🔄 **自动持久化** - cc-switch 账号切换时设置保持不变
+- 🎯 **实时指标** - 实时跟踪 Token 使用和成本
+- 🌈 **Cosmic 主题** - 灵感来自 Catppuccin 的柔美色彩
 
-## 📦 Quick Start
+## 📦 快速开始
 
-### One-Line Installation
+### 一行安装命令
 
 **Windows (PowerShell)**
 ```powershell
@@ -37,24 +37,24 @@ irm https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.ps1 | iex
 curl -fsSL https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.sh | bash
 ```
 
-### Restart Claude Code
+### 重启 Claude Code
 
-That's it! 🎉 Restart Claude Code to see your new dashboard.
+就这样！🎉 重启 Claude Code 即可看到新的仪表板。
 
-## 📖 What You'll See
+## 📖 你将看到
 
-| Line | Content |
+| 行 | 内容 |
 |------|---------|
-| **1** | 🤖 Model & 🧠 Token usage (current/total, % used) |
-| **2** | 📥 Input / 📤 Output / 💾 Cache tokens |
-| **3** | 💰 Cost / ⏱️ Session duration / 🌐 API time / 📝 Code changes |
-| **4** | 📂 Project / 🌿 Git branch & status / 💻 Computer name |
+| **1** | 🤖 模型 & 🧠 Token 使用（当前/总量，已用%） |
+| **2** | 📥 输入 / 📤 输出 / 💾 缓存 Token |
+| **3** | 💰 成本 / ⏱️ 会话时长 / 🌐 API 时间 / 📝 代码变更 |
+| **4** | 📂 项目 / 🌿 Git 分支 & 状态 / 💻 电脑名 |
 
-## ⚙️ Configuration
+## ⚙️ 配置
 
-Want to customize? Edit `~/.claude/claude-dashboard.omp.json`
+想要自定义？编辑 `~/.claude/claude-dashboard.omp.json`
 
-**Color Palette:**
+**调色板：**
 ```json
 {
   "cosmic_pink": "#F5C2E7",
@@ -68,28 +68,28 @@ Want to customize? Edit `~/.claude/claude-dashboard.omp.json`
 }
 ```
 
-[Configuration Guide →](docs/config.en.md)
+[配置指南 →](docs/config.zh.md)
 
-## 🛠️ Requirements
+## 🛠️ 要求
 
-- Claude Code installed
-- Oh My Posh (auto-installed by the script)
-- Windows PowerShell 5.1+ or bash 4.0+
+- 已安装 Claude Code
+- Oh My Posh（脚本会自动安装）
+- Windows PowerShell 5.1+ 或 bash 4.0+
 
-## 🔧 Troubleshooting
+## 🔧 故障排除
 
-Dashboard not showing? Check the [troubleshooting guide](docs/troubleshooting.en.md).
+仪表板没有显示？查看[故障排除指南](docs/troubleshooting.zh.md)。
 
-## 🤝 Contributing
+## 🤝 贡献
 
-Contributions welcome! Read [CONTRIBUTING.md](CONTRIBUTING.en.md)
+欢迎贡献！阅读 [贡献指南](CONTRIBUTING.zh.md)
 
-## 📄 License
+## 📄 许可证
 
 [MIT License](LICENSE) © 2025
 
 ---
 
-## Contributors
+## 贡献者
 
-Made with ❤️ by the community and all [contributors](https://github.com/JananZZZ/color-cc/graphs/contributors)
+由社区用 ❤️ 制作，感谢所有 [贡献者](https://github.com/JananZZZ/color-cc/graphs/contributors)

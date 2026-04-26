@@ -1,5 +1,6 @@
 #!/usr/bin/env pwsh
 # color-cc installer for Windows
+# Version: 1.1.0
 # Usage: irm https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # color-cc installer for Linux/macOS
+# Version: 1.1.0
 # Usage: curl -fsSL https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.sh | bash
 
 set -e
