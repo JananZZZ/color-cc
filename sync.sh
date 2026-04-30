@@ -48,6 +48,12 @@ echo ""
 echo -e "${YELLOW}[2/3] Updating settings.json...${NC}"
 SETTINGS_PATH="$HOME/.claude/settings.json"
 
+# Create default settings.json if it doesn't exist
+if [ ! -f "$SETTINGS_PATH" ]; then
+    echo -e "      ${GRAY}Creating new settings.json...${NC}"
+    echo "{}" > "$SETTINGS_PATH"
+fi
+
 if command -v jq >/dev/null 2>&1; then
     tmp=$(mktemp)
     jq --arg sl "oh-my-posh claude --config \"$CONFIG_DEST\"" \
@@ -58,8 +64,11 @@ elif command -v python3 >/dev/null 2>&1; then
     python3 << EOF
 import json
 
-with open('$SETTINGS_PATH', 'r') as f:
-    settings = json.load(f)
+try:
+    with open('$SETTINGS_PATH', 'r') as f:
+        settings = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
+    settings = {}
 
 settings['statusLine'] = {
     'type': 'command',

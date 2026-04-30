@@ -107,6 +107,13 @@ fi
 echo ""
 echo -e "${YELLOW}⚙️  Updating settings.json...${NC}"
 SETTINGS_PATH="$CLAUDE_PATH/settings.json"
+
+# Create default settings.json if it doesn't exist
+if [ ! -f "$SETTINGS_PATH" ]; then
+    echo -e "   ${GRAY}Creating new settings.json...${NC}"
+    echo "{}" > "$SETTINGS_PATH"
+fi
+
 if command_exists jq; then
     # Use jq if available
     tmp=$(mktemp)
@@ -119,8 +126,11 @@ elif command_exists python3; then
     python3 << EOF
 import json
 
-with open('$SETTINGS_PATH', 'r') as f:
-    settings = json.load(f)
+try:
+    with open('$SETTINGS_PATH', 'r') as f:
+        settings = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
+    settings = {}
 
 settings['statusLine'] = {
     'type': 'command',

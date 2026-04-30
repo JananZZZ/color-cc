@@ -54,19 +54,30 @@ Write-Host ""
 Write-Host "[2/3] Updating settings.json..." -ForegroundColor Yellow
 try {
     $settingsPath = "$env:USERPROFILE\.claude\settings.json"
-    $settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
 
-    $settings.statusLine = @{
+    if (Test-Path $settingsPath) {
+        $raw = Get-Content $settingsPath -Raw
+        if ([string]::IsNullOrWhiteSpace($raw)) {
+            $settings = [PSCustomObject]@{}
+        } else {
+            $settings = $raw | ConvertFrom-Json
+        }
+    } else {
+        Write-Host "      Creating new settings.json..." -ForegroundColor Gray
+        $settings = [PSCustomObject]@{}
+    }
+
+    $settings | Add-Member -MemberType NoteProperty -Name "statusLine" -Value @{
         type = "command"
         command = "oh-my-posh claude --config `"$CONFIG_DEST`""
         padding = 0
         refreshInterval = 5
-    }
+    } -Force
 
     $settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
     Write-Host "      statusLine configured" -ForegroundColor Green
 } catch {
-    Write-Host "      [ERROR] Failed to update settings.json" -ForegroundColor Red
+    Write-Host "      [ERROR] Failed to update settings.json: $($_.Exception.Message)" -ForegroundColor Red
     exit 1
 }
 
