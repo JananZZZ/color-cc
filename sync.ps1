@@ -24,7 +24,7 @@ function Get-RepoRaw {
     if ($reachable) {
         return $GITHUB_RAW
     }
-    Write-Host "      ⚠ GitHub unreachable, using Gitee mirror" -ForegroundColor Yellow
+    Write-Host "      [!] GitHub unreachable, using Gitee mirror" -ForegroundColor Yellow
     return $GITEE_RAW
 }
 
@@ -111,7 +111,7 @@ try {
     # Cleanup
     Remove-Item $injectScript -Force -ErrorAction SilentlyContinue
 } catch {
-    Write-Host "      [WARN] cc-switch update failed" -ForegroundColor Yellow
+    Write-Host "      [WARN] cc-switch update failed: $($_.Exception.Message)" -ForegroundColor Yellow
     Write-Host "      Your dashboard will still work for current account" -ForegroundColor Gray
 }
 

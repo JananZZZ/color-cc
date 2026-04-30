@@ -26,7 +26,7 @@ function Get-RepoRaw {
         Write-Host "   Using GitHub" -ForegroundColor Gray
         return $GITHUB_RAW
     }
-    Write-Host "   ⚠ GitHub unreachable, switching to Gitee mirror" -ForegroundColor Yellow
+    Write-Host "   [!] GitHub unreachable, switching to Gitee mirror" -ForegroundColor Yellow
     return $GITEE_RAW
 }
 
@@ -156,7 +156,7 @@ if (Test-Path $DB_PATH) {
 
         # Install better-sqlite3 if not available
         if (-not (Test-Command python)) {
-            Write-Host "   ⚠ Python not found, skipping cc-switch config" -ForegroundColor Yellow
+            Write-Host "   [!] Python not found, skipping cc-switch config" -ForegroundColor Yellow
         } else {
             # Install better-sqlite3
             Write-Host "   Installing better-sqlite3..." -ForegroundColor Gray
@@ -170,7 +170,7 @@ if (Test-Path $DB_PATH) {
         # Cleanup
         Remove-Item $injectScript -Force -ErrorAction SilentlyContinue
     } catch {
-        Write-Host "   ⚠ cc-switch update skipped (may require manual setup)" -ForegroundColor Yellow
+        Write-Host "   [!] cc-switch update skipped: $($_.Exception.Message)" -ForegroundColor Yellow
     }
 } else {
     Write-Host ""
