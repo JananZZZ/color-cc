@@ -5,15 +5,37 @@
 
 $ErrorActionPreference = "Stop"
 
-# Configuration
-$REPO_RAW = "https://raw.githubusercontent.com/JananZZZ/color-cc/main"
+# Configuration - GitHub source (primary)
+$GITHUB_RAW = "https://raw.githubusercontent.com/JananZZZ/color-cc/main"
+# Configuration - Gitee source (fallback for users in China)
+$GITEE_RAW = "https://gitee.com/JananZZZ/Color-cc/raw/main"
+
+# Detect best download source
+function Get-RepoRaw {
+    $reachable = $false
+    try {
+        $client = New-Object System.Net.Sockets.TcpClient
+        $result = $client.BeginConnect("raw.githubusercontent.com", 443, $null, $null)
+        $reachable = $result.AsyncWaitHandle.WaitOne(3000, $false)
+        $client.Close()
+    } catch {
+        $reachable = $false
+    }
+    if ($reachable) {
+        return $GITHUB_RAW
+    }
+    Write-Host "      ⚠ GitHub unreachable, using Gitee mirror" -ForegroundColor Yellow
+    return $GITEE_RAW
+}
+
+$REPO_RAW = Get-RepoRaw
 $CONFIG_URL = "$REPO_RAW/config/claude-dashboard.omp.json"
 $CONFIG_DEST = "$env:USERPROFILE\.claude\claude-dashboard.omp.json"
 $INJECT_SCRIPT_URL = "$REPO_RAW/scripts/inject_config.py"
 
 Write-Host ""
 Write-Host "  ╔════════════════════════════════════════╗" -ForegroundColor Cyan
-Write-Host "  ║       color-cc Config Sync v1.1.0      ║" -ForegroundColor Cyan
+Write-Host "  ║       color-cc Config Sync v1.2.0      ║" -ForegroundColor Cyan
 Write-Host "  ╚════════════════════════════════════════╝" -ForegroundColor Cyan
 Write-Host ""
 

@@ -50,8 +50,14 @@ Get-Content $env:USERPROFILE\.claude\settings.json | Select-String statusLine
 
 切换提供商后仪表板消失了？重新运行安装脚本：
 
+**GitHub（默认）**
 ```powershell
 irm https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.ps1 | iex
+```
+
+**Gitee（国内镜像）**
+```powershell
+irm https://gitee.com/JananZZZ/Color-cc/raw/main/install.ps1 | iex
 ```
 
 安装程序将恢复 statusLine 配置。
@@ -79,6 +85,42 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.ps1" -OutFile "install.ps1"
 ./install.ps1
 ```
+
+## 安装时提示 Gitee 仓库 404
+
+如果你在安装时看到类似以下错误：
+
+```
+fatal: repository 'https://gitee.com/JananZZZ/Color-cc.git/' not found
+```
+
+**原因**：你使用的"一键安装"工具尝试通过 `git clone` 从 Gitee 克隆仓库，但这种方式不是 color-cc 官方支持的安装方式。
+
+**解决方法**：
+1. 请使用官方提供的安装命令（见 README），不要使用第三方工具的 git clone
+2. 官方安装脚本会自动检测网络并选择合适的下载源
+3. 如果 GitHub 无法访问，手动使用 Gitee Raw 地址安装：
+
+**Windows**
+```powershell
+irm https://gitee.com/JananZZZ/Color-cc/raw/main/install.ps1 | iex
+```
+
+**Linux / macOS**
+```bash
+curl -fsSL https://gitee.com/JananZZZ/Color-cc/raw/main/install.sh | bash
+```
+
+> ⚠ 注意：安装使用 Raw 文件直链（`/raw/main/`），不是 `git clone`。
+
+## 安装时提示下载失败
+
+这通常是因为 `raw.githubusercontent.com` 在国内无法直接访问。
+
+**解决方法**：
+- 安装脚本会自动检测并切换到 Gitee 源
+- 如果自动检测失败，手动使用上面的 Gitee 安装命令
+- 如果你在 Gitee 上也遇到问题，请在 [GitHub Issues](https://github.com/JananZZZ/color-cc/issues) 反馈
 
 ## 仍然有问题？
 

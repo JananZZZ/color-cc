@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
 # color-cc installer for Linux/macOS
-# Version: 1.1.0
+# Version: 1.2.0
 # Usage: curl -fsSL https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.sh | bash
 
 set -e
-
-# Configuration
-REPO_RAW="https://raw.githubusercontent.com/JananZZZ/color-cc/main"
-CONFIG_URL="$REPO_RAW/config/claude-dashboard.omp.json"
-CONFIG_DEST="$HOME/.claude/claude-dashboard.omp.json"
-DB_PATH="$HOME/.cc-switch/cc-switch.db"
 
 # Colors
 RED='\033[0;31m'
@@ -18,6 +12,25 @@ YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 GRAY='\033[0;37m'
 NC='\033[0m' # No Color
+
+# Configuration - GitHub source (primary)
+GITHUB_RAW="https://raw.githubusercontent.com/JananZZZ/color-cc/main"
+# Configuration - Gitee source (fallback for users in China)
+GITEE_RAW="https://gitee.com/JananZZZ/Color-cc/raw/main"
+
+# Detect best download source
+echo -e "🔗 ${GRAY}Checking download source...${NC}"
+if curl -s --connect-timeout 3 https://raw.githubusercontent.com >/dev/null 2>&1; then
+    REPO_RAW="$GITHUB_RAW"
+    echo -e "   ${GRAY}Using GitHub${NC}"
+else
+    REPO_RAW="$GITEE_RAW"
+    echo -e "   ⚠ ${YELLOW}GitHub unreachable, switching to Gitee mirror${NC}"
+fi
+
+CONFIG_URL="$REPO_RAW/config/claude-dashboard.omp.json"
+CONFIG_DEST="$HOME/.claude/claude-dashboard.omp.json"
+DB_PATH="$HOME/.cc-switch/cc-switch.db"
 
 echo ""
 echo "  ██╗   ██╗ ██████╗ ██╗   ██╗ █████╗                  " | ${CYAN}

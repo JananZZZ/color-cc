@@ -1,12 +1,36 @@
 #!/usr/bin/env pwsh
 # color-cc installer for Windows
-# Version: 1.1.0
+# Version: 1.2.0
 # Usage: irm https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
 
-# Configuration
-$REPO_RAW = "https://raw.githubusercontent.com/JananZZZ/color-cc/main"
+# Configuration - GitHub source (primary)
+$GITHUB_RAW = "https://raw.githubusercontent.com/JananZZZ/color-cc/main"
+# Configuration - Gitee source (fallback for users in China)
+$GITEE_RAW = "https://gitee.com/JananZZZ/Color-cc/raw/main"
+
+# Detect best download source
+function Get-RepoRaw {
+    Write-Host "🔗 Checking download source..." -ForegroundColor Gray
+    $reachable = $false
+    try {
+        $client = New-Object System.Net.Sockets.TcpClient
+        $result = $client.BeginConnect("raw.githubusercontent.com", 443, $null, $null)
+        $reachable = $result.AsyncWaitHandle.WaitOne(3000, $false)
+        $client.Close()
+    } catch {
+        $reachable = $false
+    }
+    if ($reachable) {
+        Write-Host "   Using GitHub" -ForegroundColor Gray
+        return $GITHUB_RAW
+    }
+    Write-Host "   ⚠ GitHub unreachable, switching to Gitee mirror" -ForegroundColor Yellow
+    return $GITEE_RAW
+}
+
+$REPO_RAW = Get-RepoRaw
 $CONFIG_URL = "$REPO_RAW/config/claude-dashboard.omp.json"
 $CONFIG_DEST = "$env:USERPROFILE\.claude\claude-dashboard.omp.json"
 $DB_PATH = "$env:USERPROFILE\.cc-switch\cc-switch.db"

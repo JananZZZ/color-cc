@@ -38,6 +38,18 @@ irm https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.ps1 | iex
 curl -fsSL https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.sh | bash
 ```
 
+> ⚠ **Users in China**: If GitHub is unreachable, the script will auto-switch to Gitee mirror. You can also manually use:
+
+**Windows (PowerShell) — Gitee**
+```powershell
+irm https://gitee.com/JananZZZ/Color-cc/raw/main/install.ps1 | iex
+```
+
+**Linux / macOS — Gitee**
+```bash
+curl -fsSL https://gitee.com/JananZZZ/Color-cc/raw/main/install.sh | bash
+```
+
 ### Restart Claude Code
 
 That's it! 🎉 Restart Claude Code to see your new dashboard.

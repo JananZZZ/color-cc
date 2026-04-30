@@ -5,8 +5,18 @@
 
 set -e
 
-# Configuration
-REPO_RAW="https://raw.githubusercontent.com/JananZZZ/color-cc/main"
+# Configuration - GitHub source (primary)
+GITHUB_RAW="https://raw.githubusercontent.com/JananZZZ/color-cc/main"
+# Configuration - Gitee source (fallback for users in China)
+GITEE_RAW="https://gitee.com/JananZZZ/Color-cc/raw/main"
+
+# Detect best download source
+if curl -s --connect-timeout 3 https://raw.githubusercontent.com >/dev/null 2>&1; then
+    REPO_RAW="$GITHUB_RAW"
+else
+    REPO_RAW="$GITEE_RAW"
+fi
+
 CONFIG_URL="$REPO_RAW/config/claude-dashboard.omp.json"
 CONFIG_DEST="$HOME/.claude/claude-dashboard.omp.json"
 INJECT_SCRIPT_URL="$REPO_RAW/scripts/inject_config.py"
@@ -20,7 +30,7 @@ NC='\033[0m'
 
 echo ""
 echo "  ╔════════════════════════════════════════╗"
-echo "  ║       color-cc Config Sync v1.1.0      ║"
+echo "  ║       color-cc Config Sync v1.2.0      ║"
 echo "  ╚════════════════════════════════════════╝"
 echo ""
 

@@ -37,6 +37,18 @@ irm https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.ps1 | iex
 curl -fsSL https://raw.githubusercontent.com/JananZZZ/color-cc/main/install.sh | bash
 ```
 
+> ⚠ **国内用户**：如果 GitHub 无法访问，脚本会自动切换到 Gitee 镜像。你也可以手动使用以下命令：
+
+**Windows (PowerShell) — Gitee**
+```powershell
+irm https://gitee.com/JananZZZ/Color-cc/raw/main/install.ps1 | iex
+```
+
+**Linux / macOS — Gitee**
+```bash
+curl -fsSL https://gitee.com/JananZZZ/Color-cc/raw/main/install.sh | bash
+```
+
 ### 重启 Claude Code
 
 就这样！🎉 重启 Claude Code 即可看到新的仪表板。

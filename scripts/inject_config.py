@@ -138,7 +138,7 @@ def main():
     print()
     print("  ╔════════════════════════════════════════╗")
     print("  ║   color-cc cc-switch Config Injector  ║")
-    print("  ║           Version: 1.1.0               ║")
+    print("  ║           Version: 1.2.0               ║")
     print("  ╚════════════════════════════════════════╝")
     print()
 
