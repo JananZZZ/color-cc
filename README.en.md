@@ -97,6 +97,31 @@ Dashboard not showing? Check the [troubleshooting guide](docs/troubleshooting.en
 
 Contributions welcome! Read [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## ❤️ Buy Me a Coffee
+
+If this project helped you, consider buying the author a coffee~ **Just 0.88 CNY!** 
+
+Every token burned costs more than the code itself 😭
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="50%">
+        <b>💚 WeChat</b><br><br>
+        <img src="assets/wechat-donate.png" width="220"><br>
+        <sub>WeChat → 0.88 CNY</sub>
+      </td>
+      <td align="center" width="50%">
+        <b>💙 Alipay</b><br><br>
+        <img src="assets/alipay-donate.jpg" width="220"><br>
+        <sub>Alipay → 0.88 CNY</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+> 💭 Completely voluntary, no features locked! If you can't donate, a Star ⭐ makes me happy too~
+
 ## 📄 License
 
 [MIT License](LICENSE) © 2025

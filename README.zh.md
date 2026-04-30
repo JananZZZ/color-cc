@@ -97,6 +97,31 @@ curl -fsSL https://gitee.com/JananZZZ/Color-cc/raw/main/install.sh | bash
 
 欢迎贡献！阅读 [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## ❤️ 请作者喝杯咖啡
+
+如果这个项目对你有所帮助，欢迎请作者喝杯咖啡~ **0.88 元即可！** 
+
+一分也是爱，每天烧掉的 token 比代码还多 😭
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="50%">
+        <b>💚 微信</b><br><br>
+        <img src="assets/wechat-donate.png" width="220"><br>
+        <sub>微信扫码 → 0.88</sub>
+      </td>
+      <td align="center" width="50%">
+        <b>💙 支付宝</b><br><br>
+        <img src="assets/alipay-donate.jpg" width="220"><br>
+        <sub>支付宝扫码 → 0.88</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+> 💭 以上纯属良心自发，无任何功能限制，不给也完全不影响使用！好用的话给个 Star ⭐ 就很开心了~
+
 ## 📄 许可证
 
 [MIT License](LICENSE) © 2025
