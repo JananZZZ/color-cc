@@ -77,8 +77,26 @@
           "foreground": "p:deep_bg",
           "background": "p:cosmic_green",
           "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " 🎯 LastHit {{ if .ContextWindow.CurrentUsage }}{{ div .ContextWindow.CurrentUsage.CacheReadInputTokens 1000 }}K{{ else }}--{{ end }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_orange",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " 💿 LastMiss {{ if .ContextWindow.CurrentUsage }}{{ add .ContextWindow.CurrentUsage.InputTokens .ContextWindow.CurrentUsage.CacheCreationInputTokens }}{{ else }}--{{ end }} "
+        },
+        {
+          "type": "claude",
+          "style": "diamond",
+          "foreground": "p:deep_bg",
+          "background": "p:cosmic_pink",
+          "leading_diamond": "",
           "trailing_diamond": " ",
-          "template": " 💾 Cache {{ if .ContextWindow.CurrentUsage }}{{ div (add .ContextWindow.CurrentUsage.CacheCreationInputTokens .ContextWindow.CurrentUsage.CacheReadInputTokens) 1000 }}K{{ else }}0K{{ end }} "
+          "template": " 📤 LastOut {{ if .ContextWindow.CurrentUsage }}{{ .ContextWindow.CurrentUsage.OutputTokens }}{{ else }}--{{ end }} "
         }
       ]
     },
