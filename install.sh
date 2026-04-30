@@ -155,14 +155,21 @@ if [ -f "$DB_PATH" ]; then
         # Download inject script
         INJECT_SCRIPT_URL="$REPO_RAW/scripts/inject_config.py"
         INJECT_SCRIPT="/tmp/color-cc-inject.py"
-        curl -fsSL "$INJECT_SCRIPT_URL" -o "$INJECT_SCRIPT"
+        echo "   Downloading inject script..." | ${GRAY}
+        if curl -fsSL "$INJECT_SCRIPT_URL" -o "$INJECT_SCRIPT"; then
+            # Install better-sqlite3
+            echo "   Installing better-sqlite3..." | ${GRAY}
+            python3 -m pip install better-sqlite3 -q 2>/dev/null
 
-        # Install better-sqlite3
-        echo "   Installing better-sqlite3..." | ${GRAY}
-        python3 -m pip install better-sqlite3 -q 2>/dev/null
-
-        # Run inject script
-        python3 "$INJECT_SCRIPT" 2>/dev/null && echo -e "   ${GREEN}✓${NC} cc-switch providers updated"
+            # Run inject script
+            if python3 "$INJECT_SCRIPT" 2>&1; then
+                echo -e "   ${GREEN}✓${NC} cc-switch providers updated"
+            else
+                echo -e "   ${YELLOW}[!] cc-switch inject script failed${NC}"
+            fi
+        else
+            echo -e "   ${YELLOW}[!] Failed to download inject script${NC}"
+        fi
 
         # Cleanup
         rm -f "$INJECT_SCRIPT"
